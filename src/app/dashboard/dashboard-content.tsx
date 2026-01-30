@@ -214,8 +214,9 @@ export function DashboardContent({
 
 function StoryCard({ story }: { story: StorySummary }) {
   return (
-    <Card className="hover:border-foreground/20 transition-colors">
-      <CardContent className="p-6">
+    <Link href={`/stories/${story.id}`} className="block group">
+      <Card className="hover:border-foreground/20 transition-colors cursor-pointer">
+        <CardContent className="p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-3">
             {/* Header */}
@@ -245,14 +246,9 @@ function StoryCard({ story }: { story: StorySummary }) {
             </div>
 
             {/* Title */}
-            <Link
-              href={`/stories/${story.id}`}
-              className="block group"
-            >
-              <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                {story.cluster.canonicalTitle}
-              </h3>
-            </Link>
+            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+              {story.cluster.canonicalTitle}
+            </h3>
 
             {/* Summary */}
             <p className="text-sm text-muted-foreground line-clamp-2">
@@ -286,16 +282,14 @@ function StoryCard({ story }: { story: StorySummary }) {
           {/* Right side */}
           <div className="flex flex-col items-end gap-2 text-sm text-muted-foreground">
             <span>{timeAgo(story.createdAt)}</span>
-            <Link
-              href={`/stories/${story.id}`}
-              className="flex items-center gap-1 text-primary hover:underline"
-            >
+            <span className="flex items-center gap-1 text-primary">
               View details
               <ExternalLink className="h-3 w-3" />
-            </Link>
+            </span>
           </div>
         </div>
       </CardContent>
     </Card>
+    </Link>
   );
 }

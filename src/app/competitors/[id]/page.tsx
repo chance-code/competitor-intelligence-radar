@@ -187,9 +187,10 @@ export default async function CompetitorPage({
               ) : (
                 <div className="space-y-4">
                   {competitor.storySummaries.map((story) => (
-                    <div
+                    <Link
                       key={story.id}
-                      className="flex items-start gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                      href={`/stories/${story.id}`}
+                      className="flex items-start gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer block"
                     >
                       <div
                         className={`w-2 h-2 rounded-full mt-2 ${
@@ -218,12 +219,9 @@ export default async function CompetitorPage({
                             {timeAgo(story.createdAt)}
                           </span>
                         </div>
-                        <Link
-                          href={`/stories/${story.id}`}
-                          className="font-medium hover:text-primary"
-                        >
+                        <span className="font-medium hover:text-primary">
                           {story.cluster.canonicalTitle}
-                        </Link>
+                        </span>
                         <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
                           {story.summary}
                         </p>
@@ -241,7 +239,7 @@ export default async function CompetitorPage({
                           </div>
                         )}
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}

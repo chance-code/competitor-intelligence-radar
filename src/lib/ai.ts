@@ -363,28 +363,77 @@ function generateWhyItMatters(
 
 function generateRecommendedActions(
   priority: Priority,
-  aiCapabilities: AICapability[]
+  aiCapabilities: AICapability[],
+  competitor: CompetitorConfig | null,
+  combinedText: string
 ): string[] {
   const actions: string[] = [];
+  const textLower = combinedText.toLowerCase();
 
-  if (priority === "P0") {
-    actions.push("Schedule executive briefing to discuss implications");
-    actions.push("Assess competitive response options");
-    actions.push("Monitor customer sentiment and reactions");
-  } else if (priority === "P1") {
-    actions.push("Add to next competitive review agenda");
-    actions.push("Evaluate feature for potential roadmap consideration");
-  }
+  // Detect event type for specific actions
+  const isLaunch = /launch|released|introducing|announces/i.test(textLower);
+  const isFunding = /funding|raises?|series\s*[a-z]|million|investment/i.test(textLower);
+  const isPartnership = /partner|integrat|collaborat/i.test(textLower);
+  const isPricing = /pricing|price|cost|plan|tier/i.test(textLower);
+  const isAcquisition = /acqui|merger|bought|purchase/i.test(textLower);
 
+  // Specific actions based on AI capabilities
   if (aiCapabilities.includes("AI_VOICE_AGENT")) {
-    actions.push("Benchmark voice AI capabilities");
+    if (isLaunch) {
+      actions.push("Request demo of their voice AI to assess quality and latency");
+      actions.push("Test their voice agent as a mystery shopper to evaluate customer experience");
+    } else {
+      actions.push("Compare voice AI response accuracy against our solution");
+    }
   }
 
+  if (aiCapabilities.includes("AI_SCHEDULING_BOOKING")) {
+    actions.push("Analyze their booking flow UX and conversion optimization");
+  }
+
+  if (aiCapabilities.includes("AI_LEAD_RESPONSE")) {
+    actions.push("Measure their lead response time vs. industry benchmarks");
+  }
+
+  // Actions based on event type
+  if (isFunding && competitor) {
+    actions.push(`Track ${competitor.name}'s hiring activity for product direction signals`);
+    actions.push("Monitor for aggressive pricing moves or market expansion");
+  }
+
+  if (isPartnership) {
+    actions.push("Identify if partnership creates integration gaps in our offering");
+    actions.push("Reach out to shared customers about their integration needs");
+  }
+
+  if (isPricing) {
+    actions.push("Update competitive pricing matrix");
+    actions.push("Brief sales team on positioning against new pricing");
+  }
+
+  if (isAcquisition) {
+    actions.push("Assess impact on their product roadmap and combined capabilities");
+    actions.push("Identify at-risk customers who may be affected by transition");
+  }
+
+  // Priority-based actions if nothing specific found
   if (actions.length === 0) {
-    actions.push("Continue monitoring for developments");
+    if (priority === "P0") {
+      if (competitor) {
+        actions.push(`Brief customer-facing teams on ${competitor.name} development`);
+      }
+      actions.push("Prepare competitive talking points for sales team");
+    } else if (priority === "P1") {
+      actions.push("Document feature for competitive battle card update");
+    }
   }
 
-  return actions;
+  // Always ensure at least one action
+  if (actions.length === 0) {
+    actions.push("Continue monitoring for customer impact or follow-up announcements");
+  }
+
+  return actions.slice(0, 4); // Cap at 4 actions
 }
 
 export async function analyzeCluster(
@@ -425,7 +474,7 @@ export async function analyzeCluster(
   const whyItMatters = generateWhyItMatters(competitor, aiCapabilities, priority);
 
   // Generate recommended actions
-  const recommendedActions = generateRecommendedActions(priority, aiCapabilities);
+  const recommendedActions = generateRecommendedActions(priority, aiCapabilities, competitor, combinedText);
 
   // Build citations
   const citations = items.map((item) => ({

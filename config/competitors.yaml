@@ -240,17 +240,18 @@ competitors:
       - virtual receptionist
     category: RECEPTIONIST
 
-  # MED SPA VERTICAL
+  # MED SPA VERTICAL (Medical aesthetics - Botox, fillers, laser, IV therapy)
   - name: Zenoti
     website: https://zenoti.com
     verticals:
       - Med Spa
     keywords:
-      - spa software
-      - salon software
+      - med spa software
       - med spa management
-      - beauty software
-      - AI recommendations
+      - medical spa
+      - aesthetic practice
+      - medspa
+      - Zenoti AI
     category: PLATFORM
 
   - name: Mangomint
@@ -258,10 +259,11 @@ competitors:
     verticals:
       - Med Spa
     keywords:
-      - salon software
-      - spa software
-      - booking software
-      - beauty business
+      - med spa software
+      - medspa booking
+      - aesthetic booking
+      - medical spa management
+      - Mangomint
     category: PLATFORM
 
   - name: BookingBee.ai

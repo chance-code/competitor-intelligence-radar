@@ -100,54 +100,60 @@ export function DashboardContent({
 
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              New Stories (24h)
-            </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.newStories24h}</div>
-            <p className="text-xs text-muted-foreground">
-              Across all verticals
-            </p>
-          </CardContent>
-        </Card>
+        <Link href="/stories?recent=24h">
+          <Card className="hover:border-foreground/20 transition-colors cursor-pointer h-full">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                New Stories (24h)
+              </CardTitle>
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.newStories24h}</div>
+              <p className="text-xs text-muted-foreground">
+                Across all verticals
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Critical (P0)
-            </CardTitle>
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-500">
-              {stats.p0Count}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Requires immediate attention
-            </p>
-          </CardContent>
-        </Card>
+        <Link href="/stories?priority=P0">
+          <Card className="hover:border-foreground/20 transition-colors cursor-pointer h-full">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Critical (P0)
+              </CardTitle>
+              <AlertTriangle className="h-4 w-4 text-red-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-red-500">
+                {stats.p0Count}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Requires immediate attention
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Important (P1)
-            </CardTitle>
-            <AlertCircle className="h-4 w-4 text-orange-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-orange-500">
-              {stats.p1Count}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Review this week
-            </p>
-          </CardContent>
-        </Card>
+        <Link href="/stories?priority=P1">
+          <Card className="hover:border-foreground/20 transition-colors cursor-pointer h-full">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Important (P1)
+              </CardTitle>
+              <AlertCircle className="h-4 w-4 text-orange-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-orange-500">
+                {stats.p1Count}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Review this week
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -159,9 +165,10 @@ export function DashboardContent({
           <CardContent>
             <div className="space-y-1">
               {stats.mostActiveCompetitors.slice(0, 3).map((item, index) => (
-                <div
+                <Link
                   key={index}
-                  className="flex items-center justify-between text-sm"
+                  href={item.competitor?.id ? `/competitors/${item.competitor.id}` : "#"}
+                  className="flex items-center justify-between text-sm hover:text-primary transition-colors"
                 >
                   <span className="truncate">
                     {item.competitor?.name || "Unknown"}
@@ -169,7 +176,7 @@ export function DashboardContent({
                   <Badge variant="secondary" className="ml-2">
                     {item.count}
                   </Badge>
-                </div>
+                </Link>
               ))}
               {stats.mostActiveCompetitors.length === 0 && (
                 <p className="text-xs text-muted-foreground">No activity yet</p>

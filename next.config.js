@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["bullmq", "ioredis"],
+    instrumentationHook: true,
   },
 };
 

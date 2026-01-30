@@ -186,30 +186,6 @@ export default async function StoryPage({
             </Card>
           )}
 
-          {/* Recommended Actions */}
-          {story.recommendedActions.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Recommended Actions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {story.recommendedActions.map((action, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-2 p-2 bg-muted/50 rounded-md"
-                    >
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex-shrink-0">
-                        {index + 1}
-                      </span>
-                      <span>{action}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Citations */}
           <Card>
             <CardHeader>

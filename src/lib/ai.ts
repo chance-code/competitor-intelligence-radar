@@ -473,8 +473,8 @@ export async function analyzeCluster(
   // Generate why it matters
   const whyItMatters = generateWhyItMatters(competitor, aiCapabilities, priority);
 
-  // Generate recommended actions
-  const recommendedActions = generateRecommendedActions(priority, aiCapabilities, competitor, combinedText);
+  // Recommended actions removed per user request
+  const recommendedActions: string[] = [];
 
   // Build citations
   const citations = items.map((item) => ({

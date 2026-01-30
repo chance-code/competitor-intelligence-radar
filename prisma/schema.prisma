@@ -1,0 +1,263 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum CompetitorCategory {
+  PLATFORM
+  AI_VOICE
+  AI_CHAT
+  AI_ANALYTICS
+  RECEPTIONIST
+  CRM
+  FSM
+}
+
+enum SourceType {
+  official
+  industry
+  reviews
+  jobs
+}
+
+enum TrustTier {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum Priority {
+  P0
+  P1
+  P2
+}
+
+enum VerificationStatus {
+  VERIFIED
+  CLAIM_UNVERIFIED
+}
+
+enum AlertDelivery {
+  in_app
+  email
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+enum AICapability {
+  AI_VOICE_AGENT
+  AI_CHAT_AGENT
+  AI_LEAD_RESPONSE
+  AI_SCHEDULING_BOOKING
+  AI_DISPATCH_ROUTING
+  AI_MARKETING_AUTOMATION
+  AI_REPUTATION_REVIEWS
+  AI_ANALYTICS_INSIGHTS
+  AI_PAYMENTS_COLLECTIONS
+  AI_WORKFLOW_AUTOMATION
+}
+
+// Models
+model Vertical {
+  id             String         @id @default(cuid())
+  name           String         @unique
+  competitors    CompetitorVertical[]
+  storySummaries StorySummary[]
+  userAlerts     UserAlertVertical[]
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  @@map("verticals")
+}
+
+model Competitor {
+  id             String         @id @default(cuid())
+  name           String         @unique
+  website        String?
+  keywords       String[]
+  category       CompetitorCategory
+  verticals      CompetitorVertical[]
+  storySummaries StorySummary[]
+  userAlerts     UserAlertCompetitor[]
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+
+  @@map("competitors")
+}
+
+model CompetitorVertical {
+  id           String     @id @default(cuid())
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  competitorId String     @map("competitor_id")
+  vertical     Vertical   @relation(fields: [verticalId], references: [id], onDelete: Cascade)
+  verticalId   String     @map("vertical_id")
+
+  @@unique([competitorId, verticalId])
+  @@map("competitor_verticals")
+}
+
+model Source {
+  id         String     @id @default(cuid())
+  name       String
+  baseUrl    String     @map("base_url")
+  sourceType SourceType @map("source_type")
+  trustTier  TrustTier  @map("trust_tier")
+  rawItems   RawItem[]
+  createdAt  DateTime   @default(now()) @map("created_at")
+
+  @@map("sources")
+}
+
+model RawItem {
+  id          String          @id @default(cuid())
+  url         String          @unique
+  title       String?
+  publishedAt DateTime?       @map("published_at")
+  retrievedAt DateTime        @default(now()) @map("retrieved_at")
+  source      Source          @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  sourceId    String          @map("source_id")
+  rawText     String?         @map("raw_text")
+  checksum    String?
+  processed   Boolean         @default(false)
+  storyLinks  StoryItemLink[]
+
+  @@index([checksum])
+  @@index([sourceId])
+  @@index([retrievedAt])
+  @@map("raw_items")
+}
+
+model StoryCluster {
+  id             String          @id @default(cuid())
+  canonicalTitle String          @map("canonical_title")
+  storyLinks     StoryItemLink[]
+  summaries      StorySummary[]
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+
+  @@map("story_clusters")
+}
+
+model StoryItemLink {
+  id        String       @id @default(cuid())
+  cluster   StoryCluster @relation(fields: [clusterId], references: [id], onDelete: Cascade)
+  clusterId String       @map("cluster_id")
+  rawItem   RawItem      @relation(fields: [rawItemId], references: [id], onDelete: Cascade)
+  rawItemId String       @map("raw_item_id")
+
+  @@unique([clusterId, rawItemId])
+  @@map("story_item_links")
+}
+
+model StorySummary {
+  id                 String             @id @default(cuid())
+  cluster            StoryCluster       @relation(fields: [clusterId], references: [id], onDelete: Cascade)
+  clusterId          String             @map("cluster_id")
+  vertical           Vertical?          @relation(fields: [verticalId], references: [id], onDelete: SetNull)
+  verticalId         String?            @map("vertical_id")
+  competitor         Competitor?        @relation(fields: [competitorId], references: [id], onDelete: SetNull)
+  competitorId       String?            @map("competitor_id")
+  aiCapabilities     AICapability[]     @map("ai_capabilities")
+  summary            String
+  keyPoints          String[]           @map("key_points")
+  whyItMatters       String?            @map("why_it_matters")
+  recommendedActions String[]           @map("recommended_actions")
+  priority           Priority           @default(P2)
+  confidenceScore    Int                @default(3) @map("confidence_score")
+  verificationStatus VerificationStatus @default(CLAIM_UNVERIFIED) @map("verification_status")
+  citations          Json               @default("[]")
+  createdAt          DateTime           @default(now()) @map("created_at")
+  updatedAt          DateTime           @updatedAt @map("updated_at")
+
+  @@index([verticalId])
+  @@index([competitorId])
+  @@index([priority])
+  @@index([createdAt])
+  @@map("story_summaries")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  email        String      @unique
+  passwordHash String      @map("password_hash")
+  name         String?
+  isAdmin      Boolean     @default(false) @map("is_admin")
+  alerts       UserAlert[]
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model UserAlert {
+  id             String                  @id @default(cuid())
+  user           User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String                  @map("user_id")
+  verticals      UserAlertVertical[]
+  competitors    UserAlertCompetitor[]
+  aiCapabilities AICapability[]          @map("ai_capabilities")
+  minPriority    Priority                @default(P1) @map("min_priority")
+  delivery       AlertDelivery           @default(in_app)
+  isActive       Boolean                 @default(true) @map("is_active")
+  createdAt      DateTime                @default(now()) @map("created_at")
+
+  @@map("user_alerts")
+}
+
+model UserAlertVertical {
+  id         String    @id @default(cuid())
+  alert      UserAlert @relation(fields: [alertId], references: [id], onDelete: Cascade)
+  alertId    String    @map("alert_id")
+  vertical   Vertical  @relation(fields: [verticalId], references: [id], onDelete: Cascade)
+  verticalId String    @map("vertical_id")
+
+  @@unique([alertId, verticalId])
+  @@map("user_alert_verticals")
+}
+
+model UserAlertCompetitor {
+  id           String     @id @default(cuid())
+  alert        UserAlert  @relation(fields: [alertId], references: [id], onDelete: Cascade)
+  alertId      String     @map("alert_id")
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  competitorId String     @map("competitor_id")
+
+  @@unique([alertId, competitorId])
+  @@map("user_alert_competitors")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  title     String
+  message   String
+  storyId   String?  @map("story_id")
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model JobRunLog {
+  id             String    @id @default(cuid())
+  jobName        String    @map("job_name")
+  status         JobStatus @default(PENDING)
+  startedAt      DateTime  @default(now()) @map("started_at")
+  finishedAt     DateTime? @map("finished_at")
+  itemsProcessed Int       @default(0) @map("items_processed")
+  errorMessage   String?   @map("error_message")
+
+  @@index([jobName])
+  @@index([startedAt])
+  @@map("job_run_logs")
+}

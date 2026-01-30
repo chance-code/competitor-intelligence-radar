@@ -1,0 +1,256 @@
+# Competitor Intelligence Radar - Sources Configuration
+# Each source has: name, base_url, source_type, trust_tier
+
+sources:
+  # OFFICIAL COMPETITOR SOURCES - HIGH TRUST
+  # Auto Vertical
+  - name: Impel Blog
+    base_url: https://impel.ai/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Impel News
+    base_url: https://impel.ai/news
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Toma Blog
+    base_url: https://toma.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Numa Blog
+    base_url: https://numa.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Matador Blog
+    base_url: https://matador.ai/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Fullpath Blog
+    base_url: https://fullpath.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Tekion News
+    base_url: https://tekion.com/news
+    source_type: official
+    trust_tier: HIGH
+
+  - name: DriveCentric Blog
+    base_url: https://drivecentric.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: VinSolutions Blog
+    base_url: https://vinsolutions.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  # Home Services Vertical
+  - name: ServiceTitan Blog
+    base_url: https://servicetitan.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: ServiceTitan Product Updates
+    base_url: https://servicetitan.com/product-updates
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Housecall Pro Blog
+    base_url: https://housecallpro.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Workiz Blog
+    base_url: https://workiz.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: CallRail Blog
+    base_url: https://callrail.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Smith.ai Blog
+    base_url: https://smith.ai/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Retell AI Blog
+    base_url: https://retellai.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Bland AI Blog
+    base_url: https://bland.ai/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Invoca Blog
+    base_url: https://invoca.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Ruby Blog
+    base_url: https://ruby.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  # Med Spa Vertical
+  - name: Zenoti Blog
+    base_url: https://zenoti.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: Mangomint Blog
+    base_url: https://mangomint.com/blog
+    source_type: official
+    trust_tier: HIGH
+
+  - name: BookingBee Blog
+    base_url: https://bookingbee.ai/blog
+    source_type: official
+    trust_tier: HIGH
+
+  # INDUSTRY PUBLICATIONS - MEDIUM TRUST
+  - name: Automotive News
+    base_url: https://autonews.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: Digital Dealer
+    base_url: https://digitaldealer.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: DrivingSales
+    base_url: https://drivingsales.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: CBT News
+    base_url: https://cbtnews.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: Contracting Business
+    base_url: https://contractingbusiness.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: ACHR News
+    base_url: https://achrnews.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: Service World Expo
+    base_url: https://serviceworldexpo.com/news
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: American Spa
+    base_url: https://americanspa.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: Spa Business
+    base_url: https://spabusiness.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: Medical Spa Report
+    base_url: https://medicalspamd.com
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: VentureBeat AI
+    base_url: https://venturebeat.com/category/ai
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: TechCrunch AI
+    base_url: https://techcrunch.com/category/artificial-intelligence
+    source_type: industry
+    trust_tier: MEDIUM
+
+  - name: VoiceBot.ai
+    base_url: https://voicebot.ai
+    source_type: industry
+    trust_tier: MEDIUM
+
+  # REVIEW PLATFORMS - LOW TRUST (user-generated)
+  - name: G2 ServiceTitan
+    base_url: https://g2.com/products/servicetitan/reviews
+    source_type: reviews
+    trust_tier: LOW
+
+  - name: G2 Housecall Pro
+    base_url: https://g2.com/products/housecall-pro/reviews
+    source_type: reviews
+    trust_tier: LOW
+
+  - name: G2 Zenoti
+    base_url: https://g2.com/products/zenoti/reviews
+    source_type: reviews
+    trust_tier: LOW
+
+  - name: Capterra Field Service
+    base_url: https://capterra.com/field-service-management-software
+    source_type: reviews
+    trust_tier: LOW
+
+  - name: Capterra Automotive
+    base_url: https://capterra.com/automotive-dealer-software
+    source_type: reviews
+    trust_tier: LOW
+
+  - name: Capterra Spa
+    base_url: https://capterra.com/spa-software
+    source_type: reviews
+    trust_tier: LOW
+
+  # CAREER PAGES - JOBS (hiring signals)
+  - name: ServiceTitan Careers
+    base_url: https://servicetitan.com/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Housecall Pro Careers
+    base_url: https://housecallpro.com/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Tekion Careers
+    base_url: https://tekion.com/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Impel Careers
+    base_url: https://impel.ai/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Zenoti Careers
+    base_url: https://zenoti.com/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Retell AI Careers
+    base_url: https://retellai.com/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  - name: Bland AI Careers
+    base_url: https://bland.ai/careers
+    source_type: jobs
+    trust_tier: MEDIUM
+
+  # LinkedIn Job Searches (for AI hiring signals)
+  - name: LinkedIn AI Voice Jobs
+    base_url: https://linkedin.com/jobs/search/?keywords=voice%20AI
+    source_type: jobs
+    trust_tier: LOW

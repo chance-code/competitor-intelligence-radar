@@ -1,0 +1,277 @@
+# Competitor Intelligence Radar - Competitors Configuration
+# Each competitor entry supports: name, website, verticals, keywords, category
+
+competitors:
+  # AUTO VERTICAL
+  - name: Impel
+    website: https://impel.ai
+    verticals:
+      - Auto
+    keywords:
+      - automotive AI
+      - dealer AI
+      - vehicle merchandising
+      - AI sales assistant
+      - conversational AI automotive
+    category: AI_VOICE
+
+  - name: Toma
+    website: https://toma.com
+    verticals:
+      - Auto
+    keywords:
+      - voice AI automotive
+      - AI BDC
+      - automotive voice agent
+      - dealer voice AI
+    category: AI_VOICE
+
+  - name: Numa
+    website: https://numa.com
+    verticals:
+      - Auto
+    keywords:
+      - automotive AI
+      - service lane AI
+      - dealer AI assistant
+      - voice AI service
+    category: AI_VOICE
+
+  - name: Matador AI
+    website: https://matador.ai
+    verticals:
+      - Auto
+    keywords:
+      - automotive messaging
+      - dealer chat
+      - AI texting
+      - conversational commerce automotive
+    category: AI_CHAT
+
+  - name: Fullpath
+    website: https://fullpath.com
+    verticals:
+      - Auto
+    keywords:
+      - automotive marketing
+      - dealer AI platform
+      - CDP automotive
+      - shopper activation
+    category: PLATFORM
+
+  - name: Tekion
+    website: https://tekion.com
+    verticals:
+      - Auto
+    keywords:
+      - automotive retail cloud
+      - dealer management system
+      - DMS AI
+      - automotive platform
+    category: PLATFORM
+
+  - name: DriveCentric
+    website: https://drivecentric.com
+    verticals:
+      - Auto
+    keywords:
+      - automotive CRM
+      - dealer CRM
+      - AI CRM automotive
+      - sales automation
+    category: CRM
+
+  - name: VinSolutions
+    website: https://vinsolutions.com
+    verticals:
+      - Auto
+    keywords:
+      - automotive CRM
+      - dealer CRM
+      - Cox Automotive
+      - lead management
+    category: CRM
+
+  - name: DealerSocket
+    website: https://dealersocket.com
+    verticals:
+      - Auto
+    keywords:
+      - dealer CRM
+      - automotive retail
+      - inventory management
+      - dealer software
+    category: CRM
+
+  # HOME SERVICES VERTICAL (AI + Voice AI heavy)
+  - name: ServiceTitan
+    website: https://servicetitan.com
+    verticals:
+      - Home Services
+    keywords:
+      - home services software
+      - field service management
+      - HVAC software
+      - plumbing software
+      - Titan Intelligence
+      - AI dispatch
+    category: FSM
+
+  - name: Housecall Pro
+    website: https://housecallpro.com
+    verticals:
+      - Home Services
+    keywords:
+      - home services
+      - field service
+      - service business software
+      - scheduling software
+      - AI assistant
+    category: FSM
+
+  - name: Workiz
+    website: https://workiz.com
+    verticals:
+      - Home Services
+    keywords:
+      - field service management
+      - home services software
+      - service business
+      - AI features
+    category: FSM
+
+  - name: CallRail
+    website: https://callrail.com
+    verticals:
+      - Home Services
+    keywords:
+      - call tracking
+      - voice assist
+      - conversation intelligence
+      - AI call analysis
+      - lead attribution
+    category: AI_VOICE
+
+  - name: Smith.ai
+    website: https://smith.ai
+    verticals:
+      - Home Services
+      - Med Spa
+    keywords:
+      - virtual receptionist
+      - AI receptionist
+      - live chat
+      - answering service
+      - voice AI
+    category: RECEPTIONIST
+
+  - name: Retell AI
+    website: https://retellai.com
+    verticals:
+      - Home Services
+      - Auto
+      - Med Spa
+    keywords:
+      - voice AI
+      - AI phone agent
+      - conversational AI
+      - voice automation
+      - AI calling
+    category: AI_VOICE
+
+  - name: Bland AI
+    website: https://bland.ai
+    verticals:
+      - Home Services
+      - Auto
+      - Med Spa
+    keywords:
+      - AI phone calls
+      - voice AI platform
+      - conversational AI
+      - automated calling
+      - AI voice agent
+    category: AI_VOICE
+
+  - name: Invoca
+    website: https://invoca.com
+    verticals:
+      - Home Services
+      - Auto
+    keywords:
+      - conversation intelligence
+      - call tracking
+      - AI call analysis
+      - revenue execution
+      - voice analytics
+    category: AI_ANALYTICS
+
+  - name: Ruby
+    website: https://ruby.com
+    verticals:
+      - Home Services
+      - Med Spa
+    keywords:
+      - virtual receptionist
+      - live answering
+      - chat service
+      - customer engagement
+    category: RECEPTIONIST
+
+  - name: PATLive
+    website: https://patlive.com
+    verticals:
+      - Home Services
+    keywords:
+      - answering service
+      - live receptionist
+      - call center
+      - virtual receptionist
+    category: RECEPTIONIST
+
+  - name: AnswerConnect
+    website: https://answerconnect.com
+    verticals:
+      - Home Services
+    keywords:
+      - answering service
+      - live receptionist
+      - 24/7 answering
+      - virtual receptionist
+    category: RECEPTIONIST
+
+  # MED SPA VERTICAL
+  - name: Zenoti
+    website: https://zenoti.com
+    verticals:
+      - Med Spa
+    keywords:
+      - spa software
+      - salon software
+      - med spa management
+      - beauty software
+      - AI recommendations
+    category: PLATFORM
+
+  - name: Mangomint
+    website: https://mangomint.com
+    verticals:
+      - Med Spa
+    keywords:
+      - salon software
+      - spa software
+      - booking software
+      - beauty business
+    category: PLATFORM
+
+  - name: BookingBee.ai
+    website: https://bookingbee.ai
+    verticals:
+      - Med Spa
+    keywords:
+      - AI booking
+      - med spa AI
+      - AI receptionist
+      - appointment scheduling AI
+      - voice booking
+    category: AI_VOICE

@@ -93,7 +93,7 @@ sources:
   - name: Invoca Blog
     base_url: https://invoca.com/blog
     source_type: official
-    trust_tier: HIGH
+    trust_tier: LOW
 
   - name: Ruby Blog
     base_url: https://ruby.com/blog
